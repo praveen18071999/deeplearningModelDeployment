@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend  # Frontend should depend on the backend, not nginx
+      - backend  # Frontend depends only on backend
 
   backend:
     build:
@@ -21,7 +21,7 @@ services:
           memory: 3G  # Set the upper memory limit to 3GB (or higher if needed)
         reservations:
           memory: 3G  # Reserve 3GB memory for this container to start with
-    # No need to depend on nginx, it should be able to start independently.
+    # Remove any "depends_on" for nginx. Backend doesn't need to wait for nginx.
 
   nginx:
     build:
@@ -29,6 +29,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    depends_on:
-      - frontend  # nginx should only depend on frontend (to handle the routing of frontend requests)
-      # Nginx will connect to backend directly via its service name, so no need to `depends_on` it.
