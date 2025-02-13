@@ -6,9 +6,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend  # Frontend only depends on backend
-
+      
   backend:
     build:
       context: ./backend
@@ -28,6 +26,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    depends_on:
-      - frontend  # Nginx depends on frontend and backend
-      - backend
