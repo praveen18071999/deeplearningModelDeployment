@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'  # Use version 3.8 for resource constraints
 services:
   frontend:
     build:
@@ -14,7 +14,15 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"  # Expose backend on port 8000
+      - "8000:8000"
+    deploy:
+      resources:
+        limits:
+          memory: 1G  # Set the upper memory limit to 1GB (or higher if needed)
+        reservations:
+          memory: 1G  # Reserve 1GB memory for this container to start with
+    depends_on:
+      - nginx
 
   nginx:
     build:
