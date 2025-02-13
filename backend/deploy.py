@@ -64,7 +64,6 @@ class_names = [
 # Prediction endpoint
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
-    print(file.filename)
     contents = await file.read()  
     
 
