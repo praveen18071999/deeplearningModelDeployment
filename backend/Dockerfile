@@ -16,4 +16,5 @@ RUN pip install --no-cache-dir torch
 RUN pip install --no-cache-dir torchvision
 
 # Command to run the FastAPI app
-CMD ["uvicorn", "deploy:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8000
+CMD ["uvicorn", "deploy:app"]
