@@ -1,4 +1,3 @@
-# Frontend Dockerfile
 # Use Node 18 for Next.js
 FROM node:18-alpine
 

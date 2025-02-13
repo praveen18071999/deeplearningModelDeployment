@@ -1,4 +1,4 @@
-# Use a larger Python base image with a specific version to avoid breaking changes
+# Use a larger Python base image
 FROM python:3.9-slim
 
 # Set working directory
@@ -17,5 +17,5 @@ RUN pip install --no-cache-dir torch torchvision
 # Expose port 8000 for FastAPI
 EXPOSE 8000
 
-# Ensure your FastAPI app is named "app" in the deploy.py file
+# Command to run the FastAPI app
 CMD ["uvicorn", "deploy:app", "--host", "0.0.0.0", "--port", "8000"]

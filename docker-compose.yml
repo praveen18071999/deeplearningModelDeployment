@@ -21,7 +21,6 @@ services:
           memory: 3G  # Set the upper memory limit to 3GB (or higher if needed)
         reservations:
           memory: 3G  # Reserve 3GB memory for this container to start with
-    # Remove any "depends_on" for nginx. Backend doesn't need to wait for nginx.
 
   nginx:
     build:
@@ -29,3 +28,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - frontend  # Nginx depends on the frontend (it needs to reverse proxy the frontend)
