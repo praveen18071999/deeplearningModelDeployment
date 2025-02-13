@@ -1,4 +1,4 @@
-version: '3.8'  # Use version 3.8 for resource constraints
+version: '3.8'
 services:
   frontend:
     build:
@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - backend  # Frontend only depends on backend
 
   backend:
     build:
@@ -18,11 +18,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 3G  # Set the upper memory limit to 1GB (or higher if needed)
+          memory: 3G
         reservations:
-          memory: 3G  # Reserve 1GB memory for this container to start with
-    depends_on:
-      - nginx
+          memory: 3G
 
   nginx:
     build:
@@ -31,5 +29,5 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - frontend
+      - frontend  # Nginx depends on frontend and backend
       - backend
