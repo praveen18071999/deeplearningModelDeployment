@@ -1,7 +1,7 @@
 import io
 import torch
 import torch.nn as nn
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, APIRouter
 from PIL import Image
 import torchvision.transforms as transforms
 from fastapi.middleware.cors import CORSMiddleware
@@ -60,7 +60,7 @@ class_names = [
     'Pneumonia', 'Pneumothorax', 'Consolidation', 'Edema', 'Emphysema', 'Fibrosis',
     'Pleural_Thickening', 'Hernia'
 ]
-
+router=APIRouter(prefix="/api")
 # Prediction endpoint
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
